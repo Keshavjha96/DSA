@@ -8,7 +8,7 @@ class Solution {
             
             if(nums[st]<=nums[mid]){//left sorted
             if(nums[st]<=tar && tar<=nums[mid]){
-                end =mid-1;
+               end =mid-1;
             }
             else{
                 st=mid+1;

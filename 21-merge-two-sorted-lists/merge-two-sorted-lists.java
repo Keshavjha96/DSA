@@ -9,6 +9,7 @@
  * }
  */
 class Solution {
+    
     public ListNode mergeTwoLists(ListNode head1, ListNode head2) {
         if(head1==null || head2==null){
             return head1==null ? head2:head1;

@@ -1,15 +1,33 @@
+import java.util.*;
+
 class Solution {
-    public void generate(int n,int l,int r,String s,List<String> ans){
-        if(r==n){//base
-            ans.add(s);
+
+    List<String> result = new ArrayList<>();
+
+    void solve(StringBuilder curr, int n, int open, int close) {
+
+
+        if (curr.length() == 2 * n) {
+            result.add(curr.toString());
             return;
         }
-        if(l<n) generate(n,l+1,r,s+"(",ans);
-        if(r<l) generate(n,l,r+1,s+")",ans);
+        if (open < n) {
+            curr.append('(');
+            solve(curr, n, open + 1, close);
+            curr.deleteCharAt(curr.length() - 1);
+        }
+        // Add closing bracket
+        if (close < open) {
+            curr.append(')');
+            solve(curr, n, open, close + 1);
+            curr.deleteCharAt(curr.length() - 1);
+        }
     }
     public List<String> generateParenthesis(int n) {
-        List<String> ans=new ArrayList<>();
-        generate(n,0,0,"",ans);
-        return ans; 
+        StringBuilder curr = new StringBuilder();
+        int open=0;
+        int close=0;
+        solve(curr,n,open,close);
+        return result;
     }
 }
